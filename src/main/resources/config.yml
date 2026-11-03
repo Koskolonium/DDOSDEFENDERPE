@@ -1,0 +1,41 @@
+# DDoSDefender configuration. Changes need a restart.
+
+# The port players connect to, as typed in their client (or 0 = don't check).
+# Leave at 0 unless you know players always connect on exactly one port: behind
+# port forwarding, TCPShield or a proxy the port in the handshake can differ
+# from the one this server listens on, and a mismatch turns players away.
+expected-port: 0
+
+# Let connections from this machine itself (127.0.0.1) skip every check.
+# Needed for things like Geyser running on the same machine.
+allow-local-host: true
+
+# IP addresses of proxies or tunnels that ALL player traffic passes through
+# (BungeeCord/Velocity in front of this server, Playit.gg, ...). Every player
+# appears to come from these, so per-network limits are skipped for them and
+# per-account checks take over. TCPShield does NOT need listing: its signed
+# real-IP data is read automatically, so every check sees each player's real
+# address. Example:
+#   trusted-proxies:
+#     - 203.0.113.10
+trusted-proxies: []
+
+# Name prefix Floodgate gives Bedrock players (Geyser). Bedrock accounts can't
+# be checked against the Java player database or Mojang, so these players skip
+# those two checks; rate limits, impostor blocks and under-attack mode still
+# apply. Must match "username-prefix" in Floodgate's config. Empty = none.
+bedrock-prefix: "."
+
+# Server the player database comes from. On the first start this server
+# registers itself and downloads its own copy (about 450 MB on disk); new
+# accounts are then fetched every few hours, with no restart. The database
+# lets known accounts be confirmed locally instead of asking Mojang on every
+# first join. The copy is unlocked with a key fetched on each start and never
+# stored, and holds no player names - only one-way hashes.
+database-server: "https://db.iudexindustries.co.uk"
+
+# When a player who is missing from the database (or has changed their name)
+# is confirmed as a real account by Mojang, send that account's UUID and name
+# to the database server so the shared database stays up to date for everyone.
+# Only the UUID and name are sent - never IP addresses or server details.
+report-new-players: true

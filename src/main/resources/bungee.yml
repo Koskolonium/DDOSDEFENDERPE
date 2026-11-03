@@ -1,0 +1,6 @@
+name: DDOSDEFENDERPE
+main: uk.co.iudexindustries.ddosdefender.platform.bungee.BungeePlugin
+version: 'Release V${project.version}'
+author: Koskolonium
+description: Stops bot attacks and fake accounts before they reach your server.
+depends: [packetevents]

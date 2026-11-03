@@ -1,0 +1,32 @@
+name: DDOSDEFENDERPE
+version: 'Release V${project.version}'
+main: uk.co.iudexindustries.ddosdefender.platform.bukkit.BukkitPlugin
+api-version: '1.18'
+authors: [ Koskolonium ]
+website: https://iudexindustries.co.uk
+description: Stops bot attacks and fake accounts before they reach your server.
+folia-supported: true
+depend: [packetevents]
+
+commands:
+  ddosdefender:
+    description: DDoSDefender admin commands.
+    usage: |
+      /ddosdefender fastpass add <player>
+      /ddosdefender test <player>
+      /ddosdefender lockdown on|off|status
+    aliases: [ii, iudex, iudexindustries]
+
+permissions:
+  iudex.fastpass:
+    description: Pre-approve a player with /ddosdefender fastpass add.
+    default: op
+  iudex.test:
+    description: See how a name scores with /ddosdefender test.
+    default: op
+  iudex.lockdown:
+    description: Switch under-attack mode on or off and see its status.
+    default: op
+  iudex.alerts:
+    description: Get told in chat when DDoSDefender detects an attack and when it ends.
+    default: op
